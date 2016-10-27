@@ -20,7 +20,7 @@ public class ConnMain implements Watcher {
     private static CountDownLatch countDownLatch = new CountDownLatch(1);
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        ZooKeeper zooKeeper = new ZooKeeper("192.168.37.128:2181",5000, new ConnMain());
+        ZooKeeper zooKeeper = new ZooKeeper("zk.wolfbe.com:2181",5000, new ConnMain());
         logger.info("zookeeper state:{}", zooKeeper.getState());
 
         countDownLatch.await();
@@ -29,7 +29,7 @@ public class ConnMain implements Watcher {
         byte[] psswd = zooKeeper.getSessionPasswd();
         logger.info("sessionID:{}, passwd:{}",sessionID,new String(psswd,"utf-8"));
 
-        zooKeeper = new ZooKeeper("192.168.37.128:2182",5000,new ConnMain(),sessionID,psswd);
+        zooKeeper = new ZooKeeper("zk.wolfbe.com:2182",5000,new ConnMain(),sessionID,psswd);
 
         TimeUnit.SECONDS.sleep(30);
     }
