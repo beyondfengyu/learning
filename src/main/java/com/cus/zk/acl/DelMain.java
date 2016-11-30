@@ -26,10 +26,10 @@ public class DelMain {
         ZooKeeper zooKeeper = ConnFactory.getZookeeper();
         zooKeeper.addAuthInfo("digest","myname:true".getBytes());
         //调用前需要保证/zk-node结点已经存在
-        String path = "/zk-node-acl";
-        String path2 = "/zk-node-acl/child1";
-//        syncCreateNode(zooKeeper, "/zk-node-acl");
-//        syncCreateNode(zooKeeper, "/zk-node-acl/child1");
+        String path = "/open-node-acl";
+        String path2 = "/open-node-acl/child1";
+//        syncCreateNode(zooKeeper, path);
+        syncCreateNode(zooKeeper, path2);
 
         zooKeeper = ConnFactory.getZookeeper();
         zooKeeper.addAuthInfo("digest","myname:false".getBytes());
@@ -42,16 +42,17 @@ public class DelMain {
 
         zooKeeper = ConnFactory.getZookeeper();
         zooKeeper.addAuthInfo("digest","myname:true".getBytes());
+
         try{
-            zooKeeper.delete(path2,-1);
-            zooKeeper.delete(path,-1);
+//            zooKeeper.delete(path2,-1);
+//            zooKeeper.delete(path,-1);
             logger.info("myname:true del success");
         }catch (Exception e){
             logger.error("myname:true del node error,",e);
         }
 
 
-        TimeUnit.SECONDS.sleep(30);
+        TimeUnit.SECONDS.sleep(5);
     }
 
     public static String syncCreateNode(ZooKeeper zooKeeper,String path) throws KeeperException, InterruptedException {

@@ -21,7 +21,7 @@ public class ConnFactory {
     private static ZooKeeper zookeeper;
 
     public static ZooKeeper getZookeeper() throws Exception {
-        return getZookeeper("zk.wolfbe.com:2181");
+        return getZookeeper("zk.wolfbe.com:2181,zk.wolfbe.com:2182,zk.wolfbe.com:2183");
     }
 
     public static ZooKeeper getZookeeper(String connStr) throws Exception {

@@ -20,13 +20,15 @@ public class DataMain {
     public static void main(String[] args) throws Exception {
         ZooKeeper zooKeeper = ConnFactory.getZookeeper();
         //调用前需要保证/zk-node结点已经存在
-        String path = syncCreateNode(zooKeeper, "/zk-node/child11");
-        //注意，这里传入的是父结点的路径
-        asyncDataChild(zooKeeper,"/zk-node");
-//        syncDataChild(zooKeeper,"/zk-node");
-        path = syncCreateNode(zooKeeper, "/zk-node/child22");
-        getData(zooKeeper,"/zk-node");
-        TimeUnit.SECONDS.sleep(30);
+//        String path = syncCreateNode(zooKeeper, "/zk-node/child11");
+//        //注意，这里传入的是父结点的路径
+//        asyncDataChild(zooKeeper,"/zk-node");
+////        syncDataChild(zooKeeper,"/zk-node");
+//        path = syncCreateNode(zooKeeper, "/zk-node/child22");
+        for(int i=1; i<100;i++){
+            getData(zooKeeper,"/zk-node");
+            TimeUnit.SECONDS.sleep(3);
+        }
     }
 
     public static String syncCreateNode(ZooKeeper zooKeeper,String path) throws KeeperException, InterruptedException {
