@@ -60,7 +60,7 @@ public class SnowFlake {
         if (currStmp < lastStmp) {
             throw new RuntimeException("Clock moved backwards.  Refusing to generate id");
         }
-
+        //判断是否在同一毫秒内
         if (currStmp == lastStmp) {
             //相同毫秒内，序列号自增
             sequence = (sequence + 1) & MAX_SEQUENCE;
@@ -74,7 +74,7 @@ public class SnowFlake {
         }
 
         lastStmp = currStmp;
-
+        //把各部分数据按照规则填充后返回
         return (currStmp - START_STMP) << TIMESTMP_LEFT //时间戳部分
                 | datacenterId << DATACENTER_LEFT       //数据中心部分
                 | machineId << MACHINE_LEFT             //机器标识部分
@@ -95,7 +95,6 @@ public class SnowFlake {
 
     public static void main(String[] args) {
         SnowFlake snowFlake = new SnowFlake(2, 3);
-
         for (int i = 0; i < (1 << 12); i++) {
             System.out.println(snowFlake.nextId());
         }
