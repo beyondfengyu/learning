@@ -11,7 +11,7 @@ import redis.clients.jedis.Jedis;
  */
 public class Redlock {
     private static final String LOCK_KEY = "redis_lock";
-    private static final int RETRY_TIME = 30 * 1000; //等待锁的时间
+    private static final int RETRY_TIME = 10 * 1000; //等待锁的时间
     private static final int EXPIRE_TIME = 60 * 1000;//锁超时的时间
     private boolean locked;
     private long lockValue;
