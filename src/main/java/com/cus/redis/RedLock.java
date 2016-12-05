@@ -5,7 +5,7 @@ import redis.clients.jedis.Jedis;
 /**
  * 使用redis实现分布式锁
  *
- * @author ason
+ * @author beyond
  * @version 1.0
  * @date 2016/11/30
  */
