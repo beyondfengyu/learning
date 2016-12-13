@@ -79,7 +79,7 @@ public class LogicLayer {
 
     public LogicLayer initPullConsumerService() throws MQClientException {
         pullConsumerService = new MQPullConsumerScheduleService(Constants.COMSUMER_GROUP_LOGIC);
-        pullConsumerService.setMessageModel(MessageModel.CLUSTERING);
+        pullConsumerService.setMessageModel(MessageModel.BROADCASTING);
         pullConsumerService.getDefaultMQPullConsumer().setNamesrvAddr(Constants.NAME_SRV);
 
         pullConsumerService.registerPullTaskCallback(Constants.TOPIC_IM, new PullTaskCallback() {
