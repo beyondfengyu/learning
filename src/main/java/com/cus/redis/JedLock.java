@@ -3,7 +3,7 @@ package com.cus.redis;
 import redis.clients.jedis.Jedis;
 
 /**
- * 使用redis实现分布式锁
+ * 使用redis实现分布式锁, 方案一（推荐）
  *
  * @author beyond
  * @version 1.0

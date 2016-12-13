@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2016/12/12
  */
 public class ConnLayer {
+    private static int SEND_NUM = 0;
     private DefaultMQProducer producer;
 
     public void init(){
@@ -41,12 +42,12 @@ public class ConnLayer {
     public SendResult pushMessage(String message){
         Message msg = null;
         try {
-            msg = new Message(Constants.TOPIC_CONN,// topic
+            msg = new Message(Constants.TOPIC_IM,// topic
                     Constants.TAG_CONN,            // tag
                     message.getBytes(RemotingHelper.DEFAULT_CHARSET)// body
             );
             SendResult sendResult = producer.send(msg);
-            System.out.println("["+message+"] sendResult:" + sendResult);
+            System.out.println((++SEND_NUM)+"["+message+"] sendResult:" + sendResult);
             return sendResult;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -65,10 +66,11 @@ public class ConnLayer {
     public static void main(String[] args) throws InterruptedException {
         ConnLayer connLayer = new ConnLayer();
         connLayer.init();
+        //模拟2s获取到一条消息
         for(;;) {
             String message = connLayer.getMessage();
             connLayer.pushMessage(message);
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
         }
 
     }
