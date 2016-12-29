@@ -38,6 +38,7 @@ public class LogicLayer {
     public LogicLayer initPushConsumer() throws MQClientException {
         pushConsumer = new DefaultMQPushConsumer(Constants.COMSUMER_GROUP_LOGIC);
         pushConsumer.setNamesrvAddr(Constants.NAME_SRV);
+//        pushConsumer.setMessageModel(MessageModel.BROADCASTING);
         pushConsumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         try {
             pushConsumer.subscribe(Constants.TOPIC_IM, Constants.BUSINESS_ALL);
@@ -89,7 +90,7 @@ public class LogicLayer {
                 try {
                     long offset = consumer.fetchConsumeOffset(mq, false);
                     offset = offset < 0 ? 0 : offset;
-                    PullResult pullResult = consumer.pull(mq,Constants.BUSINESS_ALL,offset,32);
+                    PullResult pullResult = consumer.pull(mq,Constants.PRODUCER_GROUP_CONN,offset,32);
 //                    System.out.println(offset + "\t" + mq + "\t" + pullResult);
                     switch (pullResult.getPullStatus()) {
                         case FOUND:
@@ -134,7 +135,7 @@ public class LogicLayer {
 
     public static void main(String[] agrs) throws MQClientException {
         LogicLayer logicLayer = new LogicLayer();
-//        logicLayer.initPushConsumer();
+        logicLayer.initPushConsumer();
         logicLayer.initPullConsumerService();
     }
 

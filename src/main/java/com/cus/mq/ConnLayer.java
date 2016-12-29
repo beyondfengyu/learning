@@ -43,7 +43,7 @@ public class ConnLayer {
         Message msg = null;
         try {
             msg = new Message(Constants.TOPIC_IM,// topic
-                    Constants.TAG_CONN,            // tag
+                    Constants.TAG_CONN +"222",            // tag
                     message.getBytes(RemotingHelper.DEFAULT_CHARSET)// body
             );
             SendResult sendResult = producer.send(msg);
@@ -70,7 +70,7 @@ public class ConnLayer {
         for(;;) {
             String message = connLayer.getMessage();
             connLayer.pushMessage(message);
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(3);
         }
 
     }
