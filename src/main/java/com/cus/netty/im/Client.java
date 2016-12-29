@@ -88,14 +88,14 @@ public class Client {
         client.init()
                 .start();
         client.send(ProtoBuilder.newClientJoin("CLIENT_"+3));
-
+        Scanner scanner = new Scanner(System.in);
         while (true) {
-            Scanner scanner = new Scanner(System.in);
+            System.out.println("input the message:");
             String str = scanner.nextLine();
             if (str.equals("q")) {
                 break;
             }
-            client.send(ProtoBuilder.publishMess(new Date(0).toString()));
+            client.send(ProtoBuilder.publishMess(str));
         }
     }
 }

@@ -3,6 +3,7 @@ package com.cus.netty.im.handle;
 import com.alibaba.fastjson.JSONObject;
 import com.cus.netty.im.Client;
 import com.cus.netty.im.common.IMTYPE;
+import com.cus.netty.im.common.JsonKey;
 import com.cus.netty.im.common.ProtoBuilder;
 import com.cus.netty.im.protol.ImProtol;
 import io.netty.channel.ChannelHandlerContext;
@@ -37,7 +38,7 @@ public class ImClientHandler extends ChannelInboundHandlerAdapter {
                     break;
                 case IMTYPE.PUBLISH:
                     jsonObject = protol.getData();
-                    logger.info("[CLIENT]receive message: {}",jsonObject.getString("msg"));
+                    logger.info("[CLIENT]receive message: {}",jsonObject.getString(JsonKey.PUBLISH_MESS));
                     break;
                 case 15:
                     break;
