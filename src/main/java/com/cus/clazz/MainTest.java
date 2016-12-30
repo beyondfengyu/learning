@@ -33,7 +33,7 @@ public class MainTest {
 
         start = System.currentTimeMillis();
         for (int i = 0; i < 15000; i++) {
-            Add.class.getDeclaredFields();
+            MainTest.class.getDeclaredFields();
         }
         end = System.currentTimeMillis();
         System.out.println("nocache cast:"+(end - start)+" ms");
